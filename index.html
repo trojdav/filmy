@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101015">
+  <title>Vánoční losovač</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="snowfall" id="snowfall" aria-hidden="true"></div>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Vánoční losovač – domů">
+      <span class="brand-mark">✦</span>
+      <span>VÁNOČNÍ<span class="brand-light"> LOSOVAČ</span></span>
+    </a>
+    <nav class="nav-tabs" aria-label="Hlavní navigace">
+      <button class="nav-tab active" id="tabDraw" type="button">Losování</button>
+      <button class="nav-tab" id="tabGallery" type="button">Galerie <span id="navCount">0</span></button>
+    </nav>
+    
+  </header>
+
+  <main>
+    <section id="drawView" class="view active-view">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-line"></span> TVŮJ DALŠÍ VÁNOČNÍ VEČER</div>
+        <h1>Na co se dnes<br><em>podíváme?</em></h1>
+      </div>
+
+      <div class="draw-stage" id="drawStage">
+        <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+        <div class="floating-star star-a">✦</div><div class="floating-star star-b">✧</div>
+        <div class="deck" id="deck" role="button" tabindex="0" aria-label="Vánoční karty. Kliknutím vylosuješ film.">
+          <div class="deck-card deck-back deck-back-3"><img class="deck-poster" alt=""></div>
+          <div class="deck-card deck-back deck-back-2"><img class="deck-poster" alt=""></div>
+          <div class="deck-card deck-back deck-back-1"><img class="deck-poster" alt=""></div>
+          <div class="deck-card deck-front">
+            <img class="deck-poster" alt="">
+            <span class="deck-art" aria-hidden="true">
+              <img class="deck-tree" src="strom.png" alt="">
+            </span>
+            <span class="deck-hint">KLIKNI A LOSUJ</span>
+          </div>
+        </div>
+        <div class="result-card" id="resultCard" aria-live="polite">
+          <div class="poster-frame">
+            <img id="resultImage" alt="Vylosovaný filmový plakát">
+            <div class="poster-placeholder" id="resultPlaceholder"><span>▶</span><small>TVŮJ DALŠÍ FILM</small></div>
+          </div>
+        </div>
+        <div class="stage-caption" id="stageCaption">KLIKNI NA KARTY A VYLOSUJ FILM</div>
+      </div>
+
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">▧</div>
+        <div><strong>Plakáty zatím nejsou připravené</strong><p>Vlož plakáty pojmenované <code>1.png</code> až <code>250.png</code> do podsložky <code>images</code> vedle tohoto souboru a obnov stránku.</p></div>
+      </div>
+    </section>
+
+    <section id="galleryView" class="view gallery-view">
+      <div class="gallery-heading">
+        <div>
+          <div class="eyebrow"><span class="eyebrow-line"></span> CELÁ VÁNOČNÍ FILMOVÁ KOLEKCE</div>
+          <h1>Vánoční <em>filmová galerie.</em></h1>
+          <p class="intro">Prohlédni si kolekci a otevři plakát, který tě zaujal.</p>
+        </div>
+        <div class="collection-count"><strong id="galleryCount">0</strong><span>FILMŮ V KOLEKCI</span></div>
+      </div>
+      <div class="gallery-tools">
+        <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Hledat film nebo číslo plakátu…" autocomplete="off"><kbd>🎄</kbd></label>
+        <span class="sort-note">SEŘAZENO PODLE ČÍSLA PLAKÁTU</span>
+      </div>
+      <div id="galleryGrid" class="gallery-grid"></div>
+      <div id="galleryEmpty" class="gallery-empty">
+        <span>▧</span><strong>Galerie je zatím prázdná</strong><p>Vlož soubory <code>1.png</code> až <code>250.png</code> do složky <code>images</code> vedle kódu aplikace.</p>
+        
+      </div>
+      <p class="gallery-foot" id="galleryFoot"></p>
+    </section>
+  </main>
+
+  <footer class="footer"><span>VÁNOČNÍ LOSOVAČ</span><span>VYBER. PUSŤ. UŽIJ SI TO.</span></footer>
+
+
+  <div class="modal" id="posterModal" role="dialog" aria-modal="true" aria-label="Náhled filmového plakátu">
+    <button class="modal-backdrop" id="closeModalBackdrop" aria-label="Zavřít náhled"></button>
+    <div class="modal-panel">
+      <button class="modal-close" id="closeModal" aria-label="Zavřít">×</button>
+      <div class="modal-image-wrap"><img id="modalImage" alt="Zvětšený filmový plakát"></div>
+      <div class="modal-meta"><span class="modal-kicker">VÁNOČNÍ FILMOVÁ KOLEKCE</span><strong id="modalTitle"></strong></div>
+    </div>
+  </div>
+  <script src="poster-list.js"></script>
+  <script src="film-titles.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
