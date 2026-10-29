@@ -51,6 +51,11 @@
             <img id="resultImage" alt="Vylosovaný filmový plakát">
             <div class="poster-placeholder" id="resultPlaceholder"><span>▶</span><small>TVŮJ DALŠÍ FILM</small></div>
           </div>
+          <div class="result-meta">
+            <span class="modal-kicker">DNEŠNÍ FILMOVÝ TIP</span>
+            <strong id="resultTitle"></strong>
+            <a class="film-link" id="resultLink" target="_blank" rel="noopener noreferrer" hidden>Otevřít film na ČSFD <span aria-hidden="true">↗</span></a>
+          </div>
         </div>
         <div class="stage-caption" id="stageCaption">KLIKNI NA KARTY A VYLOSUJ FILM</div>
       </div>
@@ -91,11 +96,12 @@
     <div class="modal-panel">
       <button class="modal-close" id="closeModal" aria-label="Zavřít">×</button>
       <div class="modal-image-wrap"><img id="modalImage" alt="Zvětšený filmový plakát"></div>
-      <div class="modal-meta"><span class="modal-kicker">VÁNOČNÍ FILMOVÁ KOLEKCE</span><strong id="modalTitle"></strong></div>
+      <div class="modal-meta"><span class="modal-kicker">VÁNOČNÍ FILMOVÁ KOLEKCE</span><strong id="modalTitle"></strong><a class="film-link" id="modalLink" target="_blank" rel="noopener noreferrer" hidden>Otevřít film na ČSFD <span aria-hidden="true">↗</span></a></div>
     </div>
   </div>
   <script src="poster-list.js"></script>
   <script src="film-titles.js"></script>
+  <script src="film-links.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

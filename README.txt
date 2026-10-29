@@ -13,6 +13,7 @@ filmovy-los/
   app.js
   poster-list.js
   film-titles.js
+  film-links.js
   images/
     1.png
     2.png
@@ -20,5 +21,7 @@ filmovy-los/
     250.png
 
 Po vymene obrazku staci obnovit stranku. Plakaty jsou po otevreni stranky nacitany relativne ze slozky images. Pri michani se na kartach stridaji nahodne plakaty z kolekce a na predni karte se pred odhalenim ustali vylosovany film. Losovany plakát je vetsi a lze na nej kliknout pro dalsi zvetseni. Galerie i detail zobrazuji nazev filmu z tabulky; vyhledavani funguje podle nazvu i cisla plakatu. Bez historie losovani; bezprostredni opakovani se potlacuje.
+
+Odkazy na filmy se nacitaji z `film-links.js`, ktery obsahuje URL z posledniho sloupce souboru `filmy.xlsx`. Po zmene tabulky je potreba tento soubor znovu vygenerovat. Tlacitko s odkazem najdes pod vylosovanym plakatem a v detailu plakatu v galerii.
 
 DULEZITE: Nazvy musi byt presne 1.png az 250.png. Tato verze predpoklada format PNG; pokud mas obrazky JPG, preved je na PNG nebo uprav nazvy i seznam v poster-list.js.

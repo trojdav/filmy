@@ -59,7 +59,32 @@ h1{font-size:clamp(38px,5.2vw,61px);line-height:1.08;letter-spacing:-2px;margin:
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes twinkle{0%,100%{opacity:.35;transform:scale(.85)}50%{opacity:1;transform:scale(1.1)}}@keyframes shuffle{0%,100%{transform:translate(0,0) rotate(0)}25%{transform:translate(-18px,-5px) rotate(-8deg)}50%{transform:translate(14px,2px) rotate(6deg)}75%{transform:translate(-8px,7px) rotate(-4deg)}}@keyframes shuffleA{to{transform:rotate(-22deg) translate(-25px,4px)}}@keyframes shuffleB{to{transform:rotate(17deg) translate(23px,-9px)}}@keyframes shuffleC{to{transform:rotate(-8deg) translate(-8px,-10px)}}@keyframes reveal{0%{opacity:0;transform:translateY(22px) scale(.75) rotateY(90deg)}55%{opacity:1;transform:translateY(-8px) scale(1.04) rotateY(-8deg)}75%{transform:translateY(2px) scale(.98) rotateY(3deg)}100%{opacity:1;transform:translateY(0) scale(1) rotateY(0)}}@keyframes modalIn{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
 @media(max-width:900px){.gallery-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:17px 13px}.topbar{padding:0 24px}.gallery-heading h1{font-size:48px}}
 @media(max-width:620px){.topbar{height:auto;min-height:76px;padding:13px 18px;gap:10px;flex-wrap:wrap}.brand{font-size:10px}.brand-mark{width:27px;height:27px}.season-tag{font-size:7px;padding:6px 8px;letter-spacing:1px}.nav-tabs{order:3;width:100%;justify-content:center}.nav-tab{flex:1}.load-button{font-size:10px;padding:9px 10px}main{width:calc(100% - 34px)}.view{padding:39px 0 55px}.hero-copy h1{font-size:44px}.intro{font-size:12px}.draw-stage{height:430px}.orbit{width:270px;height:270px}.orbit-b{width:220px;height:220px}.deck{width:150px;height:218px}.result-card{width:270px}.poster-frame img{max-height:400px}.stage-caption{bottom:3px;font-size:8px}.empty-state{flex-wrap:wrap;padding:15px}.empty-state .outline-button{width:100%}.gallery-heading{align-items:start}.gallery-heading h1{font-size:39px;letter-spacing:-1.4px}.gallery-heading .intro{max-width:280px}.collection-count{padding-top:13px}.collection-count strong{font-size:28px}.collection-count span{font-size:7px;letter-spacing:1px}.gallery-tools{margin-top:25px;align-items:stretch;flex-direction:column}.sort-note{display:none}.gallery-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:15px 10px}.tile-name{font-size:9px}.footer{padding:0 18px;font-size:7px;letter-spacing:1px}.modal-panel{flex-direction:column;gap:14px;max-height:90vh}.modal-image-wrap img{max-width:78vw;max-height:68vh}.modal-meta{text-align:center;gap:5px;max-width:80vw}.modal-meta strong{font-size:18px}.modal-close{right:-9px;top:-9px}.search-box kbd{display:none}}
+
+.result-card{display:flex;flex-direction:column;align-items:center;gap:13px;cursor:default}
+.poster-frame{width:100%;cursor:zoom-in}
+.film-link{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:42px;padding:0 18px;border:1px solid rgba(230,189,120,.5);border-radius:8px;background:linear-gradient(135deg,rgba(230,189,120,.16),rgba(230,189,120,.06));color:var(--gold2);font-size:11px;font-weight:600;letter-spacing:.25px;text-decoration:none;box-shadow:0 5px 18px rgba(0,0,0,.2);transition:transform .22s ease,border-color .22s ease,background .22s ease,box-shadow .22s ease}
+.film-link span{font-size:14px;transition:transform .22s ease}
+.film-link:hover{transform:translateY(-2px);border-color:var(--gold);background:linear-gradient(135deg,rgba(230,189,120,.25),rgba(230,189,120,.1));box-shadow:0 9px 24px rgba(230,189,120,.13)}
+.film-link:hover span{transform:translate(2px,-2px)}
+.film-link:focus-visible{outline:2px solid var(--gold2);outline-offset:3px}
 @media(max-width:620px){.draw-stage.has-result{height:530px}.draw-stage.has-result .result-card{width:min(250px,76vw)}.draw-stage.has-result .poster-frame img{max-height:335px}.draw-stage.has-result .deck{bottom:33px}.draw-stage.has-result .stage-caption{font-size:7px;letter-spacing:1px}}
 @media(max-width:620px){#drawView{min-height:calc(100vh - 174px);padding:30px 0 35px}.draw-stage:not(.has-result){height:255px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
 @media(prefers-reduced-motion:reduce){.snowfall{display:none}}
+.film-link[hidden]{display:none}
+.result-card{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);align-items:center;gap:22px;width:500px;cursor:default}
+.poster-frame{width:100%}
+.result-meta{display:flex;flex-direction:column;align-items:flex-start;gap:12px;min-width:0}
+.result-meta strong{font-family:'Playfair Display',serif;font-size:clamp(20px,2.4vw,30px);line-height:1.2;overflow-wrap:anywhere}
+.draw-stage.has-result .result-card{top:50px;left:calc(50% - 340px);width:500px}
+.draw-stage.has-result .deck{top:50%;left:calc(50% + 190px);bottom:auto;transform:translateY(-50%) scale(.72);transform-origin:center}
+.draw-stage.has-result .deck:hover{transform:translateY(-50%) scale(.76)}
+@media(max-width:620px){
+  .draw-stage.has-result{height:760px}
+  .draw-stage.has-result .result-card{top:0;left:calc((100% - min(320px, 88vw))/2);width:min(320px, 88vw);grid-template-columns:1fr;gap:12px}
+  .draw-stage.has-result .result-meta{align-items:center;text-align:center;gap:8px}
+  .draw-stage.has-result .result-meta strong{font-size:21px}
+  .draw-stage.has-result .poster-frame img{max-height:335px}
+  .draw-stage.has-result .deck{top:auto;left:50%;bottom:32px;transform:translateX(-50%) scale(.55)}
+  .draw-stage.has-result .deck:hover{transform:translateX(-50%) scale(.58)}
+}

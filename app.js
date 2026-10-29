@@ -9,6 +9,9 @@
   const resultCard = $('resultCard');
   const resultImage = $('resultImage');
   const resultPlaceholder = $('resultPlaceholder');
+  const resultTitle = $('resultTitle');
+  const resultLink = $('resultLink');
+  const resultPosterFrame = resultCard.querySelector('.poster-frame');
   const stageCaption = $('stageCaption');
   const emptyState = $('emptyState');
   const galleryGrid = $('galleryGrid');
@@ -18,18 +21,34 @@
   const modal = $('posterModal');
   const modalImage = $('modalImage');
   const modalTitle = $('modalTitle');
+  const modalLink = $('modalLink');
 
   const files = Array.isArray(window.FILM_POSTERS) ? window.FILM_POSTERS : [];
   const filmTitles = window.FILM_TITLES || {};
+  const filmUrls = window.FILM_URLS || {};
   let posters = files.map((file, index) => ({
     file,
     url: 'images/' + encodeURIComponent(file).replace(/%2F/gi, '/'),
     name: file.replace(/\.[^.]+$/, '').replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim(),
     title: filmTitles[Number(file.replace(/\.[^.]+$/, ''))] || '',
+    filmUrl: filmUrls[Number(file.replace(/\.[^.]+$/, ''))] || '',
     index
   }));
   let currentPoster = null;
   let busy = false;
+
+  function setFilmLink(link, value) {
+    try {
+      const url = new URL(value);
+      if (url.protocol !== 'https:') throw new Error('Film URL must use HTTPS');
+      link.href = url.href;
+      link.hidden = false;
+    } catch (error) {
+      link.removeAttribute('href');
+      link.hidden = true;
+      if (value) console.error('Neplatná URL filmu:', value, error);
+    }
+  }
 
   for (let index = 0; index < 28; index++) {
     const flake = document.createElement('span');
@@ -79,6 +98,8 @@
     deck.setAttribute('aria-disabled', 'true');
     resultImage.style.display = 'none';
     resultPlaceholder.style.display = 'none';
+    resultTitle.textContent = '';
+    resultLink.hidden = true;
     stageCaption.textContent = 'MÍCHÁM KARTY…';
     const candidates = posters.filter(p => !currentPoster || posters.length < 2 || p.file !== currentPoster.file);
     const chosen = (candidates.length ? candidates : posters)[Math.floor(Math.random() * (candidates.length || posters.length))];
@@ -94,6 +115,8 @@
       deck.classList.remove('is-shuffling');
       deckImages.forEach(image => image.removeAttribute('src'));
       currentPoster = chosen;
+      resultTitle.textContent = chosen.title || chosen.name || chosen.file;
+      setFilmLink(resultLink, chosen.filmUrl);
       drawStage.classList.remove('is-shuffling');
       resultImage.onload = () => {
         resultImage.style.display = 'block';
@@ -123,11 +146,11 @@
       draw();
     }
   });
-  resultCard.addEventListener('click', () => { if (currentPoster && !busy) openModal(currentPoster); });
-  resultCard.setAttribute('role', 'button');
-  resultCard.setAttribute('tabindex', '0');
-  resultCard.setAttribute('aria-label', 'Zvětšit vylosovaný plakát');
-  resultCard.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && currentPoster && !busy) { e.preventDefault(); openModal(currentPoster); } });
+  resultPosterFrame.addEventListener('click', () => { if (currentPoster && !busy) openModal(currentPoster); });
+  resultPosterFrame.setAttribute('role', 'button');
+  resultPosterFrame.setAttribute('tabindex', '0');
+  resultPosterFrame.setAttribute('aria-label', 'Zvětšit vylosovaný plakát');
+  resultPosterFrame.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && currentPoster && !busy) { e.preventDefault(); openModal(currentPoster); } });
 
   function renderGallery() {
     const query = searchInput.value.trim().toLocaleLowerCase('cs');
@@ -167,6 +190,7 @@
     modalImage.src = poster.url;
     modalImage.alt = title || 'Filmový plakát';
     modalTitle.textContent = title;
+    setFilmLink(modalLink, poster.filmUrl);
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
     $('closeModal').focus();
